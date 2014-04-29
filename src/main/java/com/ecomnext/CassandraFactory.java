@@ -11,7 +11,9 @@ import java.util.Properties;
 /**
  * Only one cluster object is necessary for the whole project.
  * Only one session per keyspace is necessary for the whole project.
- * The cluster must be closed before exit the app.
+ * Both cluster an session are thread-safe.
+ * The cluster must be closed before exit the app. If we close the cluster
+ * we can not use it anymore.
  */
 public enum CassandraFactory {
     INSTANCE;
