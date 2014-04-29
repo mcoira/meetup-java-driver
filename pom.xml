@@ -50,6 +50,9 @@
 
 
         <!-- Cassandra client -->
+        <!-- Cassandra-unit includes cassandra-all:2.0.5 which depends on guava 15.
+        The driver includes guava 16 and there are some incompatibilities so we exclude
+         that dependency in order to make work all tests. -->
         <dependency>
             <groupId>com.datastax.cassandra</groupId>
             <artifactId>cassandra-driver-core</artifactId>
@@ -66,6 +69,8 @@
             <artifactId>guava</artifactId>
             <version>15.0</version>
         </dependency>
+
+        <!-- Testing -->
         <dependency>
             <groupId>org.cassandraunit</groupId>
             <artifactId>cassandra-unit</artifactId>

@@ -5,7 +5,7 @@ import com.datastax.driver.core.utils.UUIDs;
 import java.util.UUID;
 
 /**
- * Created by mikel on 28/04/14.
+ * Model class to let us use Lists of Login objects.
  */
 public class Login {
     private String user;

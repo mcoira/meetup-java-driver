@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * Only one cluster object is necessary for the whole project.
+ * Only one session per keyspace is necessary for the whole project.
+ * The cluster must be closed before exit the app.
  */
 public enum CassandraFactory {
     INSTANCE;
@@ -19,6 +21,11 @@ public enum CassandraFactory {
     private CassandraFactory() {
         logger = LoggerFactory.getLogger(CassandraFactory.class);
 
+        // in the cluster object we can define how we must to connect to the Cassandra ring.
+        // we will provide authentication, SSL config, retry policies, load balancing policies,
+        // and so on.
+        // the java driver is able to discover the nodes in the cassandra ring even when
+        // you do not provide all of them. Awesome!!
         cluster = new Cluster.Builder()
                 .withLoadBalancingPolicy(new RoundRobinPolicy())
                 .addContactPoints("127.0.0.1")

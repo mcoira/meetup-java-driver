@@ -1,3 +1,5 @@
+
+
 # Cassandra set up.
 
 [Download](http://cassandra.apache.org/download/) the latest version of Cassandra.
