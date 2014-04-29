@@ -12,7 +12,7 @@ The whole list of topics:
 *	Prepared statements
 *	Batches - Atomic, Non-atomic, and Counters
 *	Reactive programming with ListenableFuture
-*	Testing
+*	Testing with an embedded Cassandra
 
 # Cassandra set up.
 
