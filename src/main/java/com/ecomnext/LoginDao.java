@@ -14,9 +14,6 @@ import static com.datastax.driver.core.querybuilder.QueryBuilder.*;
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static java.util.stream.Collectors.*;
 
-/**
- *
- */
 public class LoginDao {
 
     private Session session;
@@ -188,7 +185,6 @@ public class LoginDao {
         return Futures.transform(rsf, (ResultSet rs) ->
                   StreamSupport.stream(Spliterators.spliteratorUnknownSize(rs.iterator(), 0), false)
                           .map(row -> row.getUUID("ts")).collect(toList())
-//                rs.all().stream().map(row -> row.getUUID("ts")).collect(toList())
         );
     }
 
