@@ -22,7 +22,7 @@ The whole list of topics:
 
 Unzip it:
 
-	tar -xvzf apache-cassandra-2.0.7-bin.tar.gz
+	tar -xvzf apache-cassandra-X.Y.Z-bin.tar.gz
 
 
 Edit `CASSANDRA_HOME/conf/cassandra.yaml` and modify the paths to point your filesystem:
