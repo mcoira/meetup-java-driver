@@ -6,6 +6,8 @@ import com.datastax.driver.core.policies.RoundRobinPolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Properties;
+
 /**
  * Only one cluster object is necessary for the whole project.
  * Only one session per keyspace is necessary for the whole project.
@@ -15,24 +17,21 @@ public enum CassandraFactory {
     INSTANCE;
 
     private final Logger logger;
+    private Properties props = new Properties();
     private Cluster cluster;
     private Session session;
 
     private CassandraFactory() {
         logger = LoggerFactory.getLogger(CassandraFactory.class);
 
-        // in the cluster object we can define how we must to connect to the Cassandra ring.
-        // we will provide authentication, SSL config, retry policies, load balancing policies,
-        // and so on.
-        // the java driver is able to discover the nodes in the cassandra ring even when
-        // you do not provide all of them. Awesome!!
-        cluster = new Cluster.Builder()
-                .withLoadBalancingPolicy(new RoundRobinPolicy())
-                .addContactPoints("localhost")
-//                .withPort(9142)
-                .build();
+        try {
+            props.load(this.getClass().getClassLoader().getResourceAsStream("cassandra-config.properties"));
+            cluster = cluster();
+        } catch (Exception e) {
+            throw new ExceptionInInitializerError(e);
+        }
 
-        session = this.cluster.connect("test");
+        session = this.cluster.connect(props.getProperty("cassandra.keyspace"));
 
         // shutdownHook to close the cluster
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -43,6 +42,25 @@ public enum CassandraFactory {
                 e.printStackTrace();
             }
         }));
+    }
+
+    /**
+     * In the cluster object we can define how we must to connect to the Cassandra ring.
+     * We will provide authentication, SSL config, retry policies, load balancing policies,
+     * and so on.
+     * The java driver is able to discover the nodes in the cassandra ring even when
+     * you do not provide all of them. Awesome!!
+     */
+    private Cluster cluster() throws Exception {
+        logger.info("Cassandra host used to connect: {}", props.getProperty("cassandra.connection.host"));
+        logger.info("Cassandra port used to connect: {}", props.getProperty("cassandra.connection.port"));
+
+        Cluster.Builder builder = new Cluster.Builder()
+                .withLoadBalancingPolicy(new RoundRobinPolicy())
+                .addContactPoints(props.getProperty("cassandra.connection.host"))
+                .withPort(Integer.parseInt(props.getProperty("cassandra.connection.port")));
+
+        return builder.build();
     }
 
     public static Session getSession() {
