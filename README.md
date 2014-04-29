@@ -5,8 +5,6 @@ many different ways to execute statements.
 
 The whole list of topics:
 
-*	Setting up Cassandra
-*	Time series, counters, and other things that Cassandra masters
 *	Connection to Cassandra ring and config params
 *	Synchronous statement execution
 *	Asynchronous statement execution
