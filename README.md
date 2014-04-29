@@ -7,13 +7,12 @@ The whole list of topics:
 
 *	Connection to Cassandra ring and config params
 *	Synchronous statement execution
-
-	* Asynchronous statement execution
-	* Programming statements with QueryBuilder
-	* Prepared statements
-	* Batches - Atomic, Non-atomic, and Counters
-	* Reactive programming with ListenableFuture
-	* Testing
+*	Asynchronous statement execution
+*	Programming statements with QueryBuilder
+*	Prepared statements
+*	Batches - Atomic, Non-atomic, and Counters
+*	Reactive programming with ListenableFuture
+*	Testing
 
 # Cassandra set up.
 
@@ -45,5 +44,5 @@ Edit `CASSANDRA_HOME/log4j-server.properties` to set the right log file path:
 	CASSANDRA_HOME/bin/cqlsh
 	CREATE KEYSPACE IF NOT EXISTS test WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
 	use test;
-	*create the tables defined in schema.cql*
+	[create the tables defined in schema.cql]
 
