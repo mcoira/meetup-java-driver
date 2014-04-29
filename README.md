@@ -5,8 +5,9 @@ many different ways to execute statements.
 
 The whole list of topics:
 
-	* Connection to Cassandra ring and config params
-	* Synchronous statement execution
+*	Connection to Cassandra ring and config params
+*	Synchronous statement execution
+
 	* Asynchronous statement execution
 	* Programming statements with QueryBuilder
 	* Prepared statements
@@ -43,5 +44,6 @@ Edit `CASSANDRA_HOME/log4j-server.properties` to set the right log file path:
 
 	CASSANDRA_HOME/bin/cqlsh
 	CREATE KEYSPACE IF NOT EXISTS test WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
-	create the tables defined in schema.cql
+	use test;
+	*create the tables defined in schema.cql*
 
