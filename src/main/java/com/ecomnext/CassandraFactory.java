@@ -28,8 +28,8 @@ public enum CassandraFactory {
         // you do not provide all of them. Awesome!!
         cluster = new Cluster.Builder()
                 .withLoadBalancingPolicy(new RoundRobinPolicy())
-                .addContactPoints("127.0.0.1")
-                .withPort(9142)
+                .addContactPoints("localhost")
+//                .withPort(9142)
                 .build();
 
         session = this.cluster.connect("test");

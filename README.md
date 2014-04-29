@@ -23,3 +23,9 @@ Edit `CASSANDRA_HOME/log4j-server.properties` to set the right log file path:
 
 	CASSANDRA_HOME/bin/cassandra
 
+# Connect to Cassandra and create the keyspace
+
+	CASSANDRA_HOME/bin/cqlsh
+	CREATE KEYSPACE IF NOT EXISTS test WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
+	create the tables defined in schema.cql
+
