@@ -1,6 +1,22 @@
+# Summary
 
+This project shows many of the configuration possibilities of Cassandra Java Driver as well as
+many different ways to execute statements.
+
+The whole list of topics:
+
+	* Connection to Cassandra ring and config params
+	* Synchronous statement execution
+	* Asynchronous statement execution
+	* Programming statements with QueryBuilder
+	* Prepared statements
+	* Batches - Atomic, Non-atomic, and Counters
+	* Reactive programming with ListenableFuture
+	* Testing
 
 # Cassandra set up.
+
+## Cassandra install and config
 
 [Download](http://cassandra.apache.org/download/) the latest version of Cassandra.
 
@@ -19,11 +35,11 @@ Edit `CASSANDRA_HOME/log4j-server.properties` to set the right log file path:
 
 	log4j.appender.R.File=/var/log/cassandra/system.log
 
-# Run Cassandra
+## Run Cassandra
 
 	CASSANDRA_HOME/bin/cassandra
 
-# Connect to Cassandra and create the keyspace
+## Connect to Cassandra and create the keyspace
 
 	CASSANDRA_HOME/bin/cqlsh
 	CREATE KEYSPACE IF NOT EXISTS test WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
